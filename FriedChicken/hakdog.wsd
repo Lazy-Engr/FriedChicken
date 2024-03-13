@@ -1,0 +1,18 @@
+@startuml
+
+scale 3
+Actor user as user
+autonumber
+user -> ConnectView: Click to Connect
+ConnectView -> PulseWaveAppController: Start Scanning
+ConnectView -> PulseWaveAppController: didDiscoverDesiredDevice
+PulseWaveAppController -> BluetoothUartService: scanUartServiceDevice
+PulseWaveAppController -> BluetoothUartService: connectPeripheral
+alt didConnectPeripheral
+PulseWaveAppController --> PulseWaveAppController: peripheralName
+end
+PulseWaveAppController --> ConnectView: connectedPeripheralName
+ConnectView -> MainView: Transition to Mainview
+
+
+@enduml
